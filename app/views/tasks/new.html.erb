@@ -1,0 +1,10 @@
+<%= form_with model: @task do |f| %>
+<p>To create a new task, fill out the following:</p>
+<%= f.label :action %>
+<%= f.text_field :action %>
+<%= f.label :description %>
+<%= f.text_field :description %>
+<%= f.label :completion_date %>
+<%= f.text_field :completion_date %>
+<%= f.submit "Save Task", class: "task-button" %>
+<% end %>

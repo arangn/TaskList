@@ -1,3 +1,4 @@
+require 'date'
 class TasksController < ApplicationController
 
   def index
@@ -31,14 +32,9 @@ class TasksController < ApplicationController
 
   def mark_complete
     task = Task.find_by(id: params[:id])
-    task.update(completion_date: 'Complete')
+    task.update(completion_date: Date.today)
     redirect_to tasks_path
   end
-
-  def edit
-    @task = Task.find_by(id: params[:id])
-  end
-
 
   def update
     task = Task.find(params[:id])
@@ -46,19 +42,19 @@ class TasksController < ApplicationController
     redirect_to task_path
   end
 
-
+  def edit
+    @task = Task.find_by(id: params[:id])
+  end
 
   def destroy
-    task = Task.find_by(id: params[:id])
+    @task = Task.find_by(id: params[:id])
 
-    task.destroy
+    @task.destroy
     redirect_to tasks_path
   end
 
   private
-
   def task_params
-    # only take in these params. Lesson attacks on site
     return params.require(:task).permit(
       :action,
       :description,

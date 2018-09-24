@@ -1,9 +1,18 @@
 <h1>Tasks</h1>
- <ul>
+<ul>
   <% @tasks.each do |task| %>
   <li>
-    <strong>Task:</strong> <%= task[:action] %>  <strong>Description:</strong> <%=
-       task[:description] %>  <strong>Completion Date:</strong> <%= task[:completion_date] %>  </li>
+    <strong>Task:</strong> <%= task[:action] %>
+    <strong>Description:</strong> <%= task[:description] %>
+    <% if task[:completion_date] == 'Complete' %>
+
+    <% end %>
+    <strong>Completion Date:</strong> <%= task[:completion_date] %>
+    <strong><%= link_to "Mark Complete", mark_complete_path(task.id), method: :patch %></strong>
+    <strong><%= link_to "Edit", edit_task_path(task) %></strong>
+    <strong><%= link_to "Delete", task_path(task), method: :delete,
+    data: { confirm: "Are you sure you want to delete?" } %></strong>
+  </li>
   <%end%>
- </ul>
- <h3>Click <%= link_to "Here", new_task_path %> to Create A New Task</h3>
+</ul>
+<h3>Click <%= link_to "Here", new_task_path %> to Create A New Task</h3>
