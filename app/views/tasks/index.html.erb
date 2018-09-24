@@ -1,0 +1,9 @@
+<h1>Tasks</h1>
+ <ul>
+  <% @tasks.each do |task| %>
+  <li>
+    <strong>Task:</strong> <%= task[:action] %>  <strong>Description:</strong> <%=
+       task[:description] %>  <strong>Completion Date:</strong> <%= task[:completion_date] %>  </li>
+  <%end%>
+ </ul>
+ <h3>Click <%= link_to "Here", new_task_path %> to Create A New Task</h3>
